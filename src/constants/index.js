@@ -20,7 +20,7 @@ export const EXPERIENCES = [
   {
     year: "2024",
     role: "Frontend Developer",
-    company: "SJ Innovations",
+    company: "SJ Innovations - Intern",
     description: `Designed and developed user interfaces for web applications
      using Next.js and React. Worked closely with backend developers to
       integrate frontend components with Node.js APIs. Implemented responsive designs and optimized frontend performance.`,
