@@ -18,13 +18,25 @@ const App = () => {
 
       
       <div className="container mx-auto px-8">
-      <Navbar/>
+      <section id="home" className="scroll-mt-32">
+        <Navbar/>
+      </section>
       <Hero />
-      <About />
-      <Technologies />
-      <Experience />
-      <Projects/> 
-      <Contact/> 
+      <section id="about" className="scroll-mt-28">
+        <About />
+      </section>
+      <section id="technologies" className="scroll-mt-28">
+        <Technologies />
+      </section>
+      <section id="experience" className="scroll-mt-28">
+        <Experience />
+      </section>
+      <section id="projects" className="scroll-mt-28">
+        <Projects/> 
+      </section>
+      <section id="contact" className="scroll-mt-28">
+        <Contact/> 
+      </section>
       </div> 
     </div>
   )
