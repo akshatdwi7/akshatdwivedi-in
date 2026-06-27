@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { FaApple, FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 const getHostname = (url) => {
   try {
@@ -10,132 +10,84 @@ const getHostname = (url) => {
   }
 };
 
-/** Auto screenshot fallback — replace with your own image for best quality */
 const getScreenshotUrl = (url, width = 900) =>
   `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=${width}`;
 
-export const BrowserPreview = ({ project }) => {
-  const [imgError, setImgError] = useState(false);
-  const domain = project.domain || getHostname(project.url);
-  const previewSrc = project.previewImage || getScreenshotUrl(project.url);
+/** iOS device mockup image (ios2.webp) */
+export const DeviceMockup = ({ project, href }) => {
+  const link = href || project.links?.[0]?.href || project.url;
 
   return (
-    <div className="group/preview mx-auto w-full max-w-lg">
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block"
+    >
+      <img
+        src={project.mockupImage}
+        alt={`${project.title} app preview`}
+        className="mx-auto w-full max-w-[280px] transition duration-300 group-hover:scale-[1.02] md:max-w-[320px]"
+      />
+    </a>
+  );
+};
+
+export const BrowserPreview = ({ project }) => {
+  const [imgError, setImgError] = useState(false);
+  const url = project.url || project.links?.[0]?.href;
+  const domain = project.domain || getHostname(url);
+  const previewSrc = project.previewImage || getScreenshotUrl(url);
+
+  return (
+    <div className="group/preview mx-auto w-full max-w-md">
       <a
-        href={project.url}
+        href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="block overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-2xl transition hover:shadow-[0_20px_60px_rgba(24,23,18,0.12)]"
+        className="block overflow-hidden rounded-xl border border-border bg-white shadow-sm ring-1 ring-black/[0.04] transition hover:shadow-md"
       >
-        <div className="flex items-center gap-2 border-b border-ink/10 bg-ink/[0.03] px-4 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-          <div className="ml-2 flex flex-1 items-center gap-2 truncate rounded-lg bg-white px-3 py-1.5 text-[11px] text-ink/50 ring-1 ring-ink/10">
-            <span className="text-ink/30">🔒</span>
-            <span className="truncate">{domain}</span>
-          </div>
+        <div className="flex items-center gap-2 border-b border-border bg-[#f6f6f6] px-4 py-3">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" aria-hidden="true" />
+          <span className="ml-2 flex-1 truncate rounded-md bg-white/80 px-3 py-1 text-center text-[11px] text-muted ring-1 ring-black/[0.06]">
+            {domain}
+          </span>
         </div>
 
-        <div className="relative aspect-[16/10] overflow-hidden bg-ink/[0.03]">
+        <div className="relative aspect-[16/10] overflow-hidden bg-surface">
           {!imgError ? (
             <img
               src={previewSrc}
-              alt={`${project.title} website preview`}
-              className="h-full w-full object-cover object-top transition duration-500 group-hover/preview:scale-[1.02]"
+              alt={`${project.title} preview`}
+              className="h-full w-full object-cover object-top"
               loading="lazy"
               onError={() => setImgError(true)}
             />
           ) : (
-            <div
-              className="flex h-full flex-col items-center justify-center gap-2 p-6 text-center"
-              style={{ backgroundColor: project.accentSoft }}
-            >
-              <span
-                className="flex h-12 w-12 items-center justify-center rounded-2xl text-lg font-bold text-white"
-                style={{ backgroundColor: project.accent }}
-              >
-                {project.logo}
-              </span>
-              <p className="font-semibold text-ink">{project.title}</p>
-              <p className="text-sm text-ink/50">{domain}</p>
+            <div className="flex h-full items-center justify-center text-sm text-muted">
+              {project.title}
             </div>
           )}
-
-          <div className="absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition group-hover/preview:bg-ink/40 group-hover/preview:opacity-100">
-            <span className="glass-pill flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-ink">
-              Visit {domain}
-              <FaArrowUpRightFromSquare className="text-xs" />
-            </span>
-          </div>
         </div>
       </a>
     </div>
   );
 };
 
-export const PhonePreview = ({ project }) => {
-  const [imgError, setImgError] = useState(false);
-  const previewSrc = project.previewImage || getScreenshotUrl(project.url, 600);
+export const AppStoreBadge = ({ href, className = "" }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`inline-flex items-center gap-1.5 border-b border-ink pb-0.5 text-sm text-ink transition hover:opacity-60 ${className}`}
+  >
+    <FaApple className="text-sm" />
+    App Store
+    <FaArrowUpRightFromSquare className="text-[10px]" />
+  </a>
+);
 
-  return (
-    <div className="group/preview relative mx-auto w-[220px]">
-      <a href={project.url} target="_blank" rel="noopener noreferrer" className="block">
-        <div className="relative rounded-[2.4rem] border-[10px] border-ink/90 bg-ink shadow-2xl transition hover:shadow-[0_24px_60px_rgba(24,23,18,0.2)]">
-          <div className="absolute left-1/2 top-2 z-10 h-1.5 w-16 -translate-x-1/2 rounded-full bg-black/40" />
-          <div className="relative overflow-hidden rounded-[1.7rem] bg-white">
-            {!imgError ? (
-              <img
-                src={previewSrc}
-                alt={`${project.title} app preview`}
-                className="aspect-[9/16] w-full object-cover object-top transition duration-500 group-hover/preview:scale-105"
-                loading="lazy"
-                onError={() => setImgError(true)}
-              />
-            ) : (
-              <PhoneFallback project={project} />
-            )}
-
-            <div className="absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition group-hover/preview:bg-ink/30 group-hover/preview:opacity-100">
-              <span className="glass-pill rounded-full px-3 py-1.5 text-xs font-semibold text-ink">
-                Open site
-              </span>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  );
-};
-
-const PhoneFallback = ({ project }) => {
-  const { accent, accentSoft, logo, screen } = project;
-  return (
-    <>
-      <div className="px-5 pb-6 pt-7" style={{ backgroundColor: accentSoft }}>
-        <div
-          className="flex h-8 w-8 items-center justify-center rounded-xl text-sm font-bold text-white"
-          style={{ backgroundColor: accent }}
-        >
-          {logo}
-        </div>
-        <p className="mt-4 text-xs font-medium text-ink/50">{screen.label}</p>
-        <p className="mt-1 text-2xl font-semibold text-ink">{screen.amount}</p>
-      </div>
-      <div className="px-5 py-5">
-        <div className="flex h-20 items-end gap-1.5">
-          {screen.bars.map((h, i) => (
-            <div
-              key={i}
-              className="w-full rounded-md"
-              style={{ height: `${h}%`, backgroundColor: i % 2 === 0 ? accent : accentSoft }}
-            />
-          ))}
-        </div>
-      </div>
-    </>
-  );
-};
-
-export const PhoneMockup = PhonePreview;
+export const PhoneMockup = DeviceMockup;
 export const BrowserMockup = BrowserPreview;

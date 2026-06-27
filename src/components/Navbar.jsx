@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
-import { CONTACT, PROFILE } from "../constants";
+import { CONTACT } from "../constants";
+import Logo from "./Logo";
 
 const navItems = [
   { label: "Work", href: "#work" },
@@ -16,7 +17,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -24,29 +25,20 @@ const Navbar = () => {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6">
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`mx-auto flex max-w-5xl items-center justify-between rounded-full px-3 py-2 transition-all duration-500 md:px-4 ${
-          scrolled ? "glass-nav-scrolled py-2" : "glass-nav py-2.5"
+      <nav
+        className={`mx-auto flex max-w-5xl items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300 md:px-5 ${
+          scrolled ? "glass-nav-scrolled" : "glass-nav"
         }`}
       >
-        <a href="#home" className="group flex items-center gap-2.5 pl-1.5">
-          <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-ink text-sm font-bold text-cream shadow-md">
-            <span className="relative z-10">{PROFILE.name.charAt(0)}</span>
-            <span className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 transition group-hover:opacity-100" />
-          </span>
-          <span className="hidden text-sm font-semibold tracking-tight text-ink sm:block">
-            {PROFILE.name}
-          </span>
+        <a href="#home">
+          <Logo className="h-7 w-7" showName />
         </a>
 
-        <ul className="hidden items-center gap-0.5 lg:flex">
+        <ul className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <li key={item.label}>
               <a
-                className="rounded-full px-4 py-2 text-sm font-medium text-ink/55 transition hover:bg-white/50 hover:text-ink"
+                className="rounded-lg px-3 py-2 text-sm text-muted transition hover:text-ink"
                 href={item.href}
               >
                 {item.label}
@@ -58,7 +50,7 @@ const Navbar = () => {
         <div className="hidden lg:block">
           <a
             href={`mailto:${CONTACT.email}`}
-            className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream shadow-md transition hover:bg-ink/90 hover:shadow-lg"
+            className="rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white transition hover:bg-ink/90"
           >
             Hire me
           </a>
@@ -66,29 +58,28 @@ const Navbar = () => {
 
         <button
           type="button"
-          className="rounded-full p-2.5 text-ink transition hover:bg-white/40 lg:hidden"
+          className="rounded-lg p-2 text-ink lg:hidden"
           onClick={() => setIsMenuOpen((open) => !open)}
-          aria-label="Toggle navigation menu"
+          aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
-      </motion.nav>
+      </nav>
 
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.98 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="glass-strong mx-auto mt-2 max-w-5xl rounded-3xl p-3 lg:hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="glass-nav-scrolled mx-auto mt-2 max-w-5xl rounded-2xl p-3 lg:hidden"
           >
-            <ul className="space-y-0.5 text-ink">
+            <ul className="space-y-1">
               {navItems.map((item) => (
                 <li key={item.label}>
                   <a
-                    className="block rounded-2xl px-4 py-3 font-medium transition hover:bg-white/50"
+                    className="block rounded-lg px-3 py-2.5 text-sm font-medium text-ink"
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -99,7 +90,7 @@ const Navbar = () => {
             </ul>
             <a
               href={`mailto:${CONTACT.email}`}
-              className="mt-2 block rounded-2xl bg-ink py-3.5 text-center text-sm font-semibold text-cream"
+              className="mt-2 block rounded-lg bg-ink py-3 text-center text-sm font-medium text-white"
               onClick={() => setIsMenuOpen(false)}
             >
               Hire me

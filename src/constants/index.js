@@ -1,18 +1,17 @@
+import iosMockup from "../assets/ios2.webp";
+
 export const PROFILE = {
   name: "Akshat Dwivedi",
   handle: "akshatdwi7",
   role: "Product Designer & React Native Developer",
   location: "Lucknow, India",
   yearsExperience: "3+ years",
-  tagline: "I design products and ship them in React Native — end to end.",
   availableForWork: true,
 };
 
-export const HERO_CONTENT = `I bridge design and engineering to build polished mobile and web products from zero to launch. From budgeting apps and luxury membership platforms to D2C beauty brands — I own the full journey: research, UI/UX, React Native development, and deployment.`;
-
 export const ABOUT_TEXT = `I'm a product designer and React Native developer who builds complete applications — not just mockups. I work at the intersection of visual craft and production code, turning ideas into apps people actually use.
 
-My process spans user research, wireframes, high-fidelity UI, and shipping cross-platform mobile apps with React Native. I've shipped consumer finance tools, premium membership experiences, and e-commerce brands — always with a focus on clarity, performance, and delight.
+My process spans user research, wireframes, high-fidelity UI, and shipping cross-platform mobile apps with React Native. I've shipped consumer finance tools, premium membership experiences, and e-commerce brands.
 
 Currently open to full-time roles, contract work, and ambitious product collaborations.`;
 
@@ -39,29 +38,18 @@ export const SOCIAL_LINKS = [
   },
 ];
 
-export const SERVICES = [
-  "Product Design",
-  "React Native Development",
-  "UI / UX",
-  "Mobile Apps",
-  "Design Systems",
-  "Brand Identity",
-  "End-to-End Builds",
-  "Prototyping",
-];
-
 export const SKILLS = [
   {
     category: "Design",
-    items: ["UI/UX Design", "Product Design", "Design Systems", "Prototyping", "Brand Identity"],
+    items: ["UI/UX Design", "Product Design", "Design Systems", "Prototyping"],
   },
   {
     category: "Development",
     items: ["React Native", "React", "Next.js", "Node.js", "TypeScript"],
   },
   {
-    category: "Tools & Platforms",
-    items: ["Figma", "Expo", "Firebase", "MongoDB", "AWS", "App Store & Play Store"],
+    category: "Tools",
+    items: ["Figma", "Expo", "Firebase", "App Store & Play Store"],
   },
 ];
 
@@ -71,126 +59,92 @@ export const EXPERIENCES = [
     role: "Founder & Developer",
     company: "Equity Engage",
     description:
-      "Building and shipping web applications end-to-end. Leading product direction, UI design, and full-stack development with React, Next.js, and Node.js.",
-    technologies: ["React", "Next.js", "Node.js", "MongoDB", "Python"],
+      "Building and shipping web applications end-to-end. Leading product direction, UI design, and full-stack development.",
+    technologies: ["React", "Next.js", "Node.js", "MongoDB"],
   },
   {
     year: "2024",
     role: "Frontend Developer",
     company: "SJ Innovations",
     description:
-      "Designed and developed responsive user interfaces with Next.js and React. Collaborated with backend teams to integrate APIs and optimize frontend performance.",
-    technologies: ["Next.js", "React", "Vue.js", "MySQL"],
+      "Designed and developed responsive user interfaces with Next.js and React.",
+    technologies: ["Next.js", "React", "Vue.js"],
   },
   {
     year: "2024",
     role: "Cloud Intern",
     company: "DCI",
-    description:
-      "Built and maintained deployment pipelines on AWS, supporting production web applications.",
+    description: "Built and maintained deployment pipelines on AWS.",
     technologies: ["AWS", "EC2", "S3", "Python"],
   },
   {
     year: "2023",
     role: "Freelance Developer",
     company: "Independent",
-    description:
-      "Delivered client web applications from concept to launch — UI design through frontend implementation.",
+    description: "Delivered client web applications from concept to launch.",
     technologies: ["HTML", "CSS", "JavaScript", "React"],
   },
 ];
 
 export const PROJECTS = [
   {
-    title: "PiggyBudget",
-    subtitle: "Personal Finance & Budgeting",
-    year: "2025",
-    url: "https://piggybudget.com",
-    domain: "piggybudget.com",
+    title: "Piggy",
+    tagline: "A better expense tracker",
+    subtitle: "Live on the App Store",
+    year: "2026",
     description:
-      "A spreadsheet-inspired budgeting app that helps people track spending, plan savings and manage money with total clarity. Designed and built the full product — the mobile app and the web presence.",
-    technologies: ["React Native", "Product Design", "UI/UX", "Node.js"],
-    type: "Mobile App & Web",
-    mockup: "browser",
+      "Track every coffee, every bill, every payday — without the stress. Designed and built end to end in React Native.",
+    technologies: ["React Native", "Expo", "Product Design"],
+    type: "iOS App",
+    mockup: "device",
+    mockupImage: iosMockup,
     accent: "#0f9d6b",
-    accentSoft: "#e7f7ef",
-    logo: "P",
-    screen: {
-      label: "piggybudget.com",
-      amount: "₹42,580",
-      sub: "Saved · 68% of goal",
-      bars: [70, 45, 90, 60, 80, 35],
-    },
+    links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/us/app/piggy-expense-tracker/id6764657143",
+        primary: true,
+      },
+      { label: "Website", href: "https://piggybudget.com" },
+    ],
   },
   {
     title: "Noww Club",
-    subtitle: "Private Membership Platform",
+    tagline: "A private club for peak performers",
+    subtitle: "Membership & rituals platform",
     year: "2025",
     url: "https://noww.club",
     domain: "noww.club",
     description:
-      "A private club for peak performers — personalised daily rituals, identity mapping and a curated member experience. Built the brand site and the mobile app experience from the ground up.",
-    technologies: ["React Native", "Next.js", "Product Design", "Brand UI"],
-    type: "Mobile App & Web",
+      "Personalised daily rituals and a curated member experience — built from brand to mobile app.",
+    technologies: ["React Native", "Next.js", "Product Design"],
+    type: "Web & App",
     mockup: "browser",
     accent: "#b45309",
-    accentSoft: "#fbf1e3",
-    logo: "N",
-    screen: {
-      label: "noww.club",
-      amount: "Breathe",
-      sub: "5 min · personalised for you",
-      bars: [40, 80, 55, 95, 65, 75],
-    },
+    links: [{ label: "Visit site", href: "https://noww.club", primary: true }],
   },
   {
     title: "Mystiqare",
-    subtitle: "D2C Beauty & Skincare Brand",
+    tagline: "Skincare engineered for India",
+    subtitle: "D2C beauty brand",
     year: "2024",
     url: "https://mystiqare.com",
     domain: "mystiqare.com",
     description:
-      "Climate-intelligent skincare engineered for Indian skin. Designed the e-commerce experience, product pages and brand identity — blending Japanese beauty rituals with modern science.",
-    technologies: ["Shopify", "UI/UX", "Brand Design", "E-commerce"],
-    type: "Brand & E-commerce",
+      "Climate-intelligent skincare with a full e-commerce experience and brand identity.",
+    technologies: ["Shopify", "UI/UX", "Brand Design"],
+    type: "E-commerce",
     mockup: "browser",
     accent: "#db2777",
-    accentSoft: "#fdeef6",
-    logo: "M",
-    screen: {
-      label: "mystiqare.com",
-      amount: "Soulful Skincare",
-      sub: "Ancient rituals · modern science",
-      bars: [60, 50, 85, 70, 90, 55],
-    },
-  },
-  {
-    title: "Mobile Apps Portfolio",
-    subtitle: "Cross-Platform Applications",
-    year: "Ongoing",
-    url: "https://github.com/akshatdwi7",
-    domain: "github.com/akshatdwi7",
-    description:
-      "A collection of React Native apps shipped to iOS and Android — fintech, lifestyle and productivity tools. Each one covers design, development and store deployment.",
-    technologies: ["React Native", "Expo", "TypeScript", "Firebase"],
-    type: "Mobile Apps",
-    mockup: "browser",
-    accent: "#6d28d9",
-    accentSoft: "#f1ecfc",
-    logo: "A",
-    screen: {
-      label: "github.com",
-      amount: "iOS + Android",
-      sub: "Designed · built · deployed",
-      bars: [80, 65, 75, 50, 85, 70],
-    },
+    links: [{ label: "Visit site", href: "https://mystiqare.com", primary: true }],
   },
 ];
-
-export const BRANDS = ["PiggyBudget", "Noww Club", "Mystiqare", "Equity Engage"];
 
 export const CONTACT = {
   email: "akshatdwi755@gmail.com",
   location: "Lucknow, India",
   availability: "Open to full-time & contract roles",
 };
+
+export const APP_STORE_URL =
+  "https://apps.apple.com/us/app/piggy-expense-tracker/id6764657143";

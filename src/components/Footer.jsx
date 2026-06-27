@@ -1,15 +1,14 @@
 import { PROFILE } from "../constants";
+import Logo from "./Logo";
 
 const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-ink/10 py-8">
-      <div className="flex flex-col items-center justify-between gap-3 text-sm text-ink/50 sm:flex-row">
-        <p>
-          © {year} {PROFILE.name}
-        </p>
-        <p>Designed &amp; built in React — end to end.</p>
+    <footer className="border-t border-border py-8">
+      <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <Logo className="h-6 w-6" showName />
+        <p className="text-sm text-muted">© {year} {PROFILE.name}</p>
       </div>
     </footer>
   );

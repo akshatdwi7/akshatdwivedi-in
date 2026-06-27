@@ -3,53 +3,32 @@ import { EXPERIENCES } from "../constants";
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-16 md:py-24">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="mb-12 md:mb-16"
-      >
-        <p className="mb-3 text-sm font-medium uppercase tracking-widest text-ink/40">Experience</p>
-        <h2 className="font-display text-4xl font-medium tracking-tight text-ink md:text-5xl">
-          Where I&apos;ve worked.
-        </h2>
-      </motion.div>
+    <section id="experience" className="border-t border-border py-16 md:py-24">
+      <div className="mb-12">
+        <p className="label">Experience</p>
+        <h2 className="heading-section mt-3">Where I&apos;ve worked</h2>
+      </div>
 
-      <div className="space-y-3">
+      <div className="divide-y divide-border">
         {EXPERIENCES.map((experience, index) => (
           <motion.div
             key={`${experience.company}-${experience.year}`}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.45, delay: index * 0.08 }}
-            className="grid gap-4 rounded-3xl border border-ink/10 bg-paper p-6 md:grid-cols-[160px_1fr] md:gap-8 md:p-8"
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            className="grid gap-3 py-8 md:grid-cols-[100px_1fr] md:gap-8"
           >
-            <div className="flex items-start">
-              <span className="rounded-full bg-cream px-3 py-1 text-sm font-medium text-ink/60">
-                {experience.year}
-              </span>
-            </div>
-
+            <p className="text-sm text-muted">{experience.year}</p>
             <div>
-              <h3 className="text-xl font-semibold tracking-tight text-ink">
+              <h3 className="font-display text-xl text-ink md:text-2xl">
                 {experience.role}
-                <span className="font-normal text-ink/40"> at </span>
-                {experience.company}
+                <span className="text-muted"> · {experience.company}</span>
               </h3>
-              <p className="mt-3 text-ink/60">{experience.description}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {experience.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-ink/10 px-3 py-1 text-xs font-medium text-ink/50"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              <p className="mt-2 text-sm text-muted">{experience.description}</p>
+              <p className="mt-3 text-xs text-muted">
+                {experience.technologies.join(" · ")}
+              </p>
             </div>
           </motion.div>
         ))}

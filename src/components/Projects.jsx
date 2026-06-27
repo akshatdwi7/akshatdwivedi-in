@@ -1,78 +1,77 @@
 import { motion } from "framer-motion";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { PROJECTS } from "../constants";
-import { BrowserMockup, PhoneMockup } from "./Mockups";
+import { AppStoreBadge, BrowserMockup, DeviceMockup } from "./Mockups";
 
 /* eslint-disable react/prop-types */
-const ProjectRow = ({ project, index }) => {
-  const reversed = index % 2 === 1;
+const AppCard = ({ project, index }) => {
+  const mainLink = project.links?.find((l) => l.primary)?.href || project.url;
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 36 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="grid items-center gap-8 rounded-[2rem] border border-ink/10 bg-paper p-6 md:gap-12 md:p-10 lg:grid-cols-2"
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.45, delay: index * 0.06 }}
+      className="group border-b border-border py-12 last:border-0 md:py-16"
     >
-      <div
-        className={`flex items-center justify-center rounded-3xl p-8 md:p-12 ${
-          reversed ? "lg:order-2" : ""
-        }`}
-        style={{ backgroundColor: project.accentSoft }}
-      >
-        {project.mockup === "phone" ? (
-          <PhoneMockup project={project} />
-        ) : (
-          <BrowserMockup project={project} />
-        )}
-      </div>
-
-      <div className={reversed ? "lg:order-1" : ""}>
-        <div className="flex items-center gap-3 text-sm">
-          <span
-            className="rounded-full px-3 py-1 font-medium text-white"
-            style={{ backgroundColor: project.accent }}
+      <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
+        <div className="order-2 lg:order-1">
+          <a
+            href={mainLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
           >
-            {project.type}
-          </span>
-          <span className="text-ink/40">{project.year}</span>
-        </div>
+            <h3 className="font-display text-4xl tracking-tight text-ink transition group-hover:opacity-60 md:text-5xl">
+              {project.title}
+            </h3>
+            <p className="mt-1 font-display text-lg italic text-muted md:text-xl">
+              {project.tagline}
+            </p>
+          </a>
 
-        <h3 className="mt-4 font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
-          {project.title}
-        </h3>
-        <p className="mt-1 text-lg text-ink/50">{project.subtitle}</p>
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-muted md:text-[15px]">
+            {project.description}
+          </p>
 
-        <p className="mt-4 max-w-md text-base leading-relaxed text-ink/60">
-          {project.description}
-        </p>
-
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-ink/10 bg-cream px-3 py-1 text-xs font-medium text-ink/60"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {project.url && (
-          <div className="mt-7 flex flex-wrap items-center gap-3">
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-cream transition hover:bg-ink/85"
-            >
-              Visit {project.domain || project.title}
-              <FaArrowUpRightFromSquare className="text-xs transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <span className="text-sm text-ink/40">{project.url}</span>
+          <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1">
+            {project.technologies.map((tech) => (
+              <span key={tech} className="text-xs text-muted">
+                {tech}
+              </span>
+            ))}
           </div>
-        )}
+
+          {project.links && (
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              {project.links.map((link) =>
+                link.label === "App Store" ? (
+                  <AppStoreBadge key={link.label} href={link.href} />
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 border-b border-ink pb-0.5 text-sm text-ink transition hover:opacity-60"
+                  >
+                    {link.label}
+                    <FaArrowUpRightFromSquare className="text-[10px]" />
+                  </a>
+                )
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
+          {project.mockup === "device" ? (
+            <DeviceMockup project={project} />
+          ) : (
+            <BrowserMockup project={project} />
+          )}
+        </div>
       </div>
     </motion.article>
   );
@@ -81,30 +80,19 @@ const ProjectRow = ({ project, index }) => {
 const Projects = () => {
   return (
     <section id="work" className="py-16 md:py-24">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="mb-12 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between"
-      >
-        <div>
-          <p className="mb-3 text-sm font-medium uppercase tracking-widest text-ink/40">
-            Selected work
-          </p>
-          <h2 className="max-w-xl font-display text-4xl font-medium tracking-tight text-ink md:text-5xl">
-            Apps &amp; brands, designed and shipped.
-          </h2>
-        </div>
-        <p className="max-w-sm text-ink/50">
-          A few products where I owned both the design and the React Native build — from first
-          sketch to the app store.
+      <div className="mb-12 md:mb-16">
+        <p className="label">Work</p>
+        <h2 className="heading-section mt-3">
+          Apps I&apos;ve <em>built</em>
+        </h2>
+        <p className="mt-4 max-w-md text-sm text-muted md:text-base">
+          Designed, coded, and shipped — fintech to beauty.
         </p>
-      </motion.div>
+      </div>
 
-      <div className="space-y-6 md:space-y-8">
+      <div>
         {PROJECTS.map((project, index) => (
-          <ProjectRow key={project.title} project={project} index={index} />
+          <AppCard key={project.title} project={project} index={index} />
         ))}
       </div>
     </section>
