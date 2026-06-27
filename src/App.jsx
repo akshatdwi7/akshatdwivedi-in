@@ -1,45 +1,43 @@
-import About from "./components/About"
-import Contact from "./components/Contact"
-import Experience from "./components/Experience"
-import Hero from "./components/Hero"
-import Navbar from "./components/Navbar"
-import Projects from "./components/Projects"
-import Technologies from "./components/Technologies"
+import About from "./components/About";
+import Brands from "./components/Brands";
+import Contact from "./components/Contact";
+import Experience from "./components/Experience";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import Marquee from "./components/Marquee";
+import Navbar from "./components/Navbar";
+import Projects from "./components/Projects";
 
 const App = () => {
   return (
+    <div className="min-h-screen overflow-x-hidden bg-cream text-ink antialiased">
+      <Navbar />
 
-    <div className="overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900">
-      <div className="fixed top-0 -z-10 h-full w-full">
-      <div className="absolute top-0 z-[-2] h-screen w-screen
-       bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),
-       rgba(255,255,255,0))]"></div>
-       </div>   
+      <section id="home" className="scroll-mt-24">
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
+          <Hero />
+        </div>
+      </section>
 
-      
-      <div className="container mx-auto px-8">
-      <section id="home" className="scroll-mt-32">
-        <Navbar/>
-      </section>
-      <Hero />
-      <section id="about" className="scroll-mt-28">
-        <About />
-      </section>
-      <section id="technologies" className="scroll-mt-28">
-        <Technologies />
-      </section>
-      <section id="experience" className="scroll-mt-28">
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <Marquee />
+
+        <Brands />
+
+        <Projects />
+
+        <section id="about" className="scroll-mt-24">
+          <About />
+        </section>
+
         <Experience />
-      </section>
-      <section id="projects" className="scroll-mt-28">
-        <Projects/> 
-      </section>
-      <section id="contact" className="scroll-mt-28">
-        <Contact/> 
-      </section>
-      </div> 
-    </div>
-  )
-}
 
-export default App
+        <Contact />
+
+        <Footer />
+      </div>
+    </div>
+  );
+};
+
+export default App;

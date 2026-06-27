@@ -1,114 +1,114 @@
-import { useState } from "react";
-import logo from "../assets/kevinRushLogo.png";
-import { FaGithub, FaInstagram, FaLinkedin, FaTimes } from "react-icons/fa";
-import { FaBars, FaSquareXTwitter } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { FaTimes } from "react-icons/fa";
+import { FaBars } from "react-icons/fa6";
+import { CONTACT, PROFILE } from "../constants";
 
 const navItems = [
+  { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
-  { label: "Tech", href: "#technologies" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
-];
-
-const socialLinks = [
-  {
-    href: "https://www.linkedin.com/in/akshat-dwivedi-2497622a2/",
-    icon: FaLinkedin,
-    label: "LinkedIn",
-  },
-  { href: "https://github.com/akshatdwi7", icon: FaGithub, label: "GitHub" },
-  { href: "https://x.com/Akshatdwi7", icon: FaSquareXTwitter, label: "X" },
-  {
-    href: "https://www.instagram.com/nachosz/",
-    icon: FaInstagram,
-    label: "Instagram",
-  },
 ];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-4 z-50 mb-16">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-white/10 bg-neutral-900/75 px-4 py-3 backdrop-blur-md md:px-6">
-        <a href="#home" className="flex items-center gap-3">
-          <img className="w-10 rounded-lg" src={logo} alt="Akshat logo" />
-          <div className="leading-tight">
-            <p className="text-sm text-neutral-400">Portfolio</p>
-            <p className="font-semibold tracking-wide text-neutral-100">Akshat Dwivedi</p>
-          </div>
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6">
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className={`mx-auto flex max-w-5xl items-center justify-between rounded-full px-3 py-2 transition-all duration-500 md:px-4 ${
+          scrolled ? "glass-nav-scrolled py-2" : "glass-nav py-2.5"
+        }`}
+      >
+        <a href="#home" className="group flex items-center gap-2.5 pl-1.5">
+          <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-ink text-sm font-bold text-cream shadow-md">
+            <span className="relative z-10">{PROFILE.name.charAt(0)}</span>
+            <span className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 transition group-hover:opacity-100" />
+          </span>
+          <span className="hidden text-sm font-semibold tracking-tight text-ink sm:block">
+            {PROFILE.name}
+          </span>
         </a>
 
-        <ul className="hidden items-center gap-6 text-sm font-medium text-neutral-300 lg:flex">
+        <ul className="hidden items-center gap-0.5 lg:flex">
           {navItems.map((item) => (
             <li key={item.label}>
-              <a className="transition hover:text-cyan-300" href={item.href}>
+              <a
+                className="rounded-full px-4 py-2 text-sm font-medium text-ink/55 transition hover:bg-white/50 hover:text-ink"
+                href={item.href}
+              >
                 {item.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          {socialLinks.map(({ href, icon: Icon, label }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="rounded-full border border-white/10 bg-neutral-800 p-2 text-lg text-neutral-300 transition hover:-translate-y-0.5 hover:border-cyan-400/60 hover:text-cyan-300"
-            >
-              <Icon />
-            </a>
-          ))}
+        <div className="hidden lg:block">
+          <a
+            href={`mailto:${CONTACT.email}`}
+            className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream shadow-md transition hover:bg-ink/90 hover:shadow-lg"
+          >
+            Hire me
+          </a>
         </div>
 
         <button
           type="button"
-          className="rounded-lg border border-white/10 bg-neutral-800 p-2 text-neutral-100 lg:hidden"
+          className="rounded-full p-2.5 text-ink transition hover:bg-white/40 lg:hidden"
           onClick={() => setIsMenuOpen((open) => !open)}
           aria-label="Toggle navigation menu"
           aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
-      </nav>
+      </motion.nav>
 
-      {isMenuOpen && (
-        <div className="mt-2 rounded-2xl border border-white/10 bg-neutral-900/95 px-4 py-4 backdrop-blur lg:hidden">
-          <ul className="space-y-3 text-neutral-200">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  className="block rounded-md px-2 py-1 transition hover:bg-neutral-800"
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-4 flex items-center gap-2">
-            {socialLinks.map(({ href, icon: Icon, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="rounded-full border border-white/10 bg-neutral-800 p-2 text-lg text-neutral-300"
-              >
-                <Icon />
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="glass-strong mx-auto mt-2 max-w-5xl rounded-3xl p-3 lg:hidden"
+          >
+            <ul className="space-y-0.5 text-ink">
+              {navItems.map((item) => (
+                <li key={item.label}>
+                  <a
+                    className="block rounded-2xl px-4 py-3 font-medium transition hover:bg-white/50"
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={`mailto:${CONTACT.email}`}
+              className="mt-2 block rounded-2xl bg-ink py-3.5 text-center text-sm font-semibold text-cream"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Hire me
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
 
-export default Navbar
+export default Navbar;

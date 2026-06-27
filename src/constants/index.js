@@ -1,79 +1,192 @@
-import project1 from "../assets/projects/project-1.jpg";
-import project2 from "../assets/projects/project-2.jpg";
-import project3 from "../assets/projects/project-3.jpg";
-import project4 from "../assets/projects/project-4.jpg";
+export const PROFILE = {
+  name: "Akshat Dwivedi",
+  handle: "akshatdwi7",
+  role: "Product Designer & React Native Developer",
+  location: "Lucknow, India",
+  yearsExperience: "3+ years",
+  tagline: "I design products and ship them in React Native — end to end.",
+  availableForWork: true,
+};
 
-export const HERO_CONTENT = `I am a passionate full stack developer with a knack for crafting robust and scalable web applications. With 2 years of hands-on experience, I have honed my skills in front-end technologies like React and Next.js, as well as back-end technologies like Node.js, MySQL, PostgreSQL, and MongoDB. My goal is to leverage my expertise to create innovative solutions that drive business growth and deliver exceptional user experiences.`;
+export const HERO_CONTENT = `I bridge design and engineering to build polished mobile and web products from zero to launch. From budgeting apps and luxury membership platforms to D2C beauty brands — I own the full journey: research, UI/UX, React Native development, and deployment.`;
 
-export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With  years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
+export const ABOUT_TEXT = `I'm a product designer and React Native developer who builds complete applications — not just mockups. I work at the intersection of visual craft and production code, turning ideas into apps people actually use.
+
+My process spans user research, wireframes, high-fidelity UI, and shipping cross-platform mobile apps with React Native. I've shipped consumer finance tools, premium membership experiences, and e-commerce brands — always with a focus on clarity, performance, and delight.
+
+Currently open to full-time roles, contract work, and ambitious product collaborations.`;
+
+export const SOCIAL_LINKS = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/akshat-dwivedi-2497622a2/",
+    handle: "akshat-dwivedi",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/akshatdwi7",
+    handle: "akshatdwi7",
+  },
+  {
+    label: "X",
+    href: "https://x.com/Akshatdwi7",
+    handle: "Akshatdwi7",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/nachosz/",
+    handle: "nachosz",
+  },
+];
+
+export const SERVICES = [
+  "Product Design",
+  "React Native Development",
+  "UI / UX",
+  "Mobile Apps",
+  "Design Systems",
+  "Brand Identity",
+  "End-to-End Builds",
+  "Prototyping",
+];
+
+export const SKILLS = [
+  {
+    category: "Design",
+    items: ["UI/UX Design", "Product Design", "Design Systems", "Prototyping", "Brand Identity"],
+  },
+  {
+    category: "Development",
+    items: ["React Native", "React", "Next.js", "Node.js", "TypeScript"],
+  },
+  {
+    category: "Tools & Platforms",
+    items: ["Figma", "Expo", "Firebase", "MongoDB", "AWS", "App Store & Play Store"],
+  },
+];
 
 export const EXPERIENCES = [
   {
-    year: " Present",
-    role: "Founder and Developer ",
+    year: "Present",
+    role: "Founder & Developer",
     company: "Equity Engage",
-    description: `Led a team in developing and maintaining web applications using JavaScript, React.js, and Node.js. Implemented Restfull
-     APIs At Equity Engage  , 
-     with MongoDB databases. Collaborated with stakeholders to define project requirements and timelines.`,
-    technologies: ["Javascript", "React.js", "Next.js", "mongoDB" ,"Python"],
+    description:
+      "Building and shipping web applications end-to-end. Leading product direction, UI design, and full-stack development with React, Next.js, and Node.js.",
+    technologies: ["React", "Next.js", "Node.js", "MongoDB", "Python"],
   },
   {
     year: "2024",
     role: "Frontend Developer",
-    company: "SJ Innovations - Intern",
-    description: `Designed and developed user interfaces for web applications
-     using Next.js and React. Worked closely with backend developers to
-      integrate frontend components with Node.js APIs. Implemented responsive designs and optimized frontend performance.`,
-    technologies: ["HTML", "CSS", "Vue.js", "mySQL" ,"Js"],
+    company: "SJ Innovations",
+    description:
+      "Designed and developed responsive user interfaces with Next.js and React. Collaborated with backend teams to integrate APIs and optimize frontend performance.",
+    technologies: ["Next.js", "React", "Vue.js", "MySQL"],
   },
   {
     year: "2024",
-    role: "Cloud Intern ",
+    role: "Cloud Intern",
     company: "DCI",
-    description: `Developed and maintained web applications piplelines using AWS .`,
-    technologies: ["Python", "EC2", "S3", "AWS"  ,"IAM"],
+    description:
+      "Built and maintained deployment pipelines on AWS, supporting production web applications.",
+    technologies: ["AWS", "EC2", "S3", "Python"],
   },
   {
     year: "2023",
-    role: "Freelance",
-    company: "N/A",
-    description: `Contributed to the development of web applications of clients and Made basic projects using FrontEnd-Stack.`,
-    technologies: ["HTML", "CSS", "JS", ],
+    role: "Freelance Developer",
+    company: "Independent",
+    description:
+      "Delivered client web applications from concept to launch — UI design through frontend implementation.",
+    technologies: ["HTML", "CSS", "JavaScript", "React"],
   },
 ];
 
 export const PROJECTS = [
   {
-    title: "E-Commerce Website",
-    image: project1,
+    title: "PiggyBudget",
+    subtitle: "Personal Finance & Budgeting",
+    year: "2025",
+    url: "https://piggybudget.com",
     description:
-      "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
-    technologies: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
+      "A spreadsheet-inspired budgeting app that helps people track spending, plan savings and manage money with total clarity. Designed and built the full product — the mobile app and the web presence.",
+    technologies: ["React Native", "Product Design", "UI/UX", "Node.js"],
+    type: "Mobile App & Web",
+    mockup: "phone",
+    accent: "#0f9d6b",
+    accentSoft: "#e7f7ef",
+    logo: "P",
+    screen: {
+      label: "This month",
+      amount: "₹42,580",
+      sub: "Saved · 68% of goal",
+      bars: [70, 45, 90, 60, 80, 35],
+    },
   },
   {
-    title: "Task Management App",
-    image: project2,
+    title: "Noww Club",
+    subtitle: "Private Membership Platform",
+    year: "2025",
+    url: "https://noww.club",
     description:
-      "An application for managing tasks and projects, with features such as task creation, assignment, and progress tracking.",
-    technologies: ["HTML", "CSS", "Angular", "Firebase"],
+      "A private club for peak performers — personalised daily rituals, identity mapping and a curated member experience. Built the brand site and the mobile app experience from the ground up.",
+    technologies: ["React Native", "Next.js", "Product Design", "Brand UI"],
+    type: "Mobile App & Web",
+    mockup: "phone",
+    accent: "#b45309",
+    accentSoft: "#fbf1e3",
+    logo: "N",
+    screen: {
+      label: "Today's ritual",
+      amount: "Breathe",
+      sub: "5 min · personalised for you",
+      bars: [40, 80, 55, 95, 65, 75],
+    },
   },
   {
-    title: "Portfolio Website",
-    image: project3,
+    title: "Mystiqare",
+    subtitle: "D2C Beauty & Skincare Brand",
+    year: "2024",
+    url: "https://mystiqare.com",
     description:
-      "A personal portfolio website showcasing projects, skills, and contact information.",
-    technologies: ["HTML", "CSS", "React", "Bootstrap"],
+      "Climate-intelligent skincare engineered for Indian skin. Designed the e-commerce experience, product pages and brand identity — blending Japanese beauty rituals with modern science.",
+    technologies: ["Shopify", "UI/UX", "Brand Design", "E-commerce"],
+    type: "Brand & E-commerce",
+    mockup: "browser",
+    accent: "#db2777",
+    accentSoft: "#fdeef6",
+    logo: "M",
+    screen: {
+      label: "mystiqare.com",
+      amount: "Soulful Skincare",
+      sub: "Ancient rituals · modern science",
+      bars: [60, 50, 85, 70, 90, 55],
+    },
   },
   {
-    title: "Blogging Platform",
-    image: project4,
+    title: "Mobile Apps Portfolio",
+    subtitle: "Cross-Platform Applications",
+    year: "Ongoing",
+    url: "https://github.com/akshatdwi7",
     description:
-      "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
-    technologies: ["HTML", "CSS", "Vue.js", "Express", "mySQL"],
+      "A collection of React Native apps shipped to iOS and Android — fintech, lifestyle and productivity tools. Each one covers design, development and store deployment.",
+    technologies: ["React Native", "Expo", "TypeScript", "Firebase"],
+    type: "Mobile Apps",
+    mockup: "phone",
+    accent: "#6d28d9",
+    accentSoft: "#f1ecfc",
+    logo: "A",
+    screen: {
+      label: "Shipped",
+      amount: "iOS + Android",
+      sub: "Designed · built · deployed",
+      bars: [80, 65, 75, 50, 85, 70],
+    },
   },
 ];
 
+export const BRANDS = ["PiggyBudget", "Noww Club", "Mystiqare", "Equity Engage"];
+
 export const CONTACT = {
-  address: "Lucknow, India, 📍 ",
   email: "akshatdwi755@gmail.com",
+  location: "Lucknow, India",
+  availability: "Open to full-time & contract roles",
 };

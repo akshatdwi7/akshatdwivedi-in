@@ -1,49 +1,111 @@
+import { motion } from "framer-motion";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { PROJECTS } from "../constants";
+import { BrowserMockup, PhoneMockup } from "./Mockups";
 
-import {PROJECTS} from "../constants"
-import {motion} from  "framer-motion"
+/* eslint-disable react/prop-types */
+const ProjectRow = ({ project, index }) => {
+  const reversed = index % 2 === 1;
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 36 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      className="grid items-center gap-8 rounded-[2rem] border border-ink/10 bg-paper p-6 md:gap-12 md:p-10 lg:grid-cols-2"
+    >
+      <div
+        className={`flex items-center justify-center rounded-3xl p-8 md:p-12 ${
+          reversed ? "lg:order-2" : ""
+        }`}
+        style={{ backgroundColor: project.accentSoft }}
+      >
+        {project.mockup === "phone" ? (
+          <PhoneMockup project={project} />
+        ) : (
+          <BrowserMockup project={project} />
+        )}
+      </div>
+
+      <div className={reversed ? "lg:order-1" : ""}>
+        <div className="flex items-center gap-3 text-sm">
+          <span
+            className="rounded-full px-3 py-1 font-medium text-white"
+            style={{ backgroundColor: project.accent }}
+          >
+            {project.type}
+          </span>
+          <span className="text-ink/40">{project.year}</span>
+        </div>
+
+        <h3 className="mt-4 font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
+          {project.title}
+        </h3>
+        <p className="mt-1 text-lg text-ink/50">{project.subtitle}</p>
+
+        <p className="mt-4 max-w-md text-base leading-relaxed text-ink/60">
+          {project.description}
+        </p>
+
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border border-ink/10 bg-cream px-3 py-1 text-xs font-medium text-ink/60"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        {project.url && (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-7 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-cream transition hover:bg-ink/85"
+          >
+            Visit project
+            <FaArrowUpRightFromSquare className="text-xs transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        )}
+      </div>
+    </motion.article>
+  );
+};
+
 const Projects = () => {
   return (
-    <div className="border-b border-neutral-900 pb-4">
-     <motion.h2
-     whileInView={{opacity:1 ,y:0 }}
-     initial ={{opacity :0 ,y: -100}}
-     transition={{duration:0.5}}
-     className="my-20 text-center text-4xl"> Projects</motion.h2>
-     <div>
-      {PROJECTS.map((project, index)=>(
-    <div key={index} className="mb-8 flex flex-wrap lg: justify-center">
+    <section id="work" className="py-16 md:py-24">
       <motion.div
-      whileInView={{opacity:1 ,x:0 }}
-      initial ={{opacity :0, x: -100}}
-      transition={{duration:1}}
-      className="w-full lg:w-1/4">
-      <img 
-      src={project.image}
-       width={150} 
-      height={150}
-      alt={project.title}
-      className="mb-6 rounded "
-      />
-      
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mb-12 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between"
+      >
+        <div>
+          <p className="mb-3 text-sm font-medium uppercase tracking-widest text-ink/40">
+            Selected work
+          </p>
+          <h2 className="max-w-xl font-display text-4xl font-medium tracking-tight text-ink md:text-5xl">
+            Apps &amp; brands, designed and shipped.
+          </h2>
+        </div>
+        <p className="max-w-sm text-ink/50">
+          A few products where I owned both the design and the React Native build — from first
+          sketch to the app store.
+        </p>
       </motion.div>
-        <motion.div 
-        whileInView={{opacity:1 ,x:0 }}
-        initial ={{opacity :0, x: 100}}
-        transition={{duration:1}}
-        
-        className="w-full max-w-xl lg:w-3/4 ">
-        <h6 className="mb-2 font-semibold">{project.title}</h6>
-        <p className="mb-4 text-neutral-400">{project.description}</p>
-        {project.technologies.map((tech , index)=>(
-          <span key={index}
-           className="mr-2 rounded bg-neutral-900 px-2 py-1  text-sm font-medium text-purple-900 ">{tech}</span>
-        ))}
-        </motion.div>
-    </div>
-    ))}
-    </div>
-    </div>
-  )
-}
 
-export default Projects
+      <div className="space-y-6 md:space-y-8">
+        {PROJECTS.map((project, index) => (
+          <ProjectRow key={project.title} project={project} index={index} />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
