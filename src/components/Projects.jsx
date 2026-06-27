@@ -60,15 +60,18 @@ const ProjectRow = ({ project, index }) => {
         </div>
 
         {project.url && (
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group mt-7 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-cream transition hover:bg-ink/85"
-          >
-            Visit project
-            <FaArrowUpRightFromSquare className="text-xs transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-cream transition hover:bg-ink/85"
+            >
+              Visit {project.domain || project.title}
+              <FaArrowUpRightFromSquare className="text-xs transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <span className="text-sm text-ink/40">{project.url}</span>
+          </div>
         )}
       </div>
     </motion.article>
