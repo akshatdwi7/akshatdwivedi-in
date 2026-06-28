@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import profilePic from "../assets/kevinRushProfile.jpg";
+import profilePic from "../assets/m3.jpeg";
 import { CONTACT, PROFILE, SOCIAL_LINKS } from "../constants";
 
 const socialIcons = {
@@ -20,14 +20,14 @@ const Hero = () => {
         transition={{ duration: 0.5 }}
         className="max-w-3xl"
       >
-        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-base text-muted">
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-2 text-base text-muted md:text-lg">
           Hi, my name is
-          <span className="inline-flex items-center gap-2 font-display text-xl italic text-ink md:text-2xl">
+          <span className="inline-flex items-center gap-3 font-display text-xl italic text-ink md:text-2xl">
             {PROFILE.name}
             <img
               src={profilePic}
-              alt=""
-              className="h-8 w-8 rounded-full object-cover ring-1 ring-border md:h-9 md:w-9"
+              alt={PROFILE.name}
+              className="h-16 w-16 shrink-0 rounded-full object-cover object-[58%_32%] ring-2 ring-border md:h-20 md:w-20"
             />
           </span>
         </p>

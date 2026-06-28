@@ -1,4 +1,6 @@
 import iosMockup from "../assets/ios2.webp";
+import nowwMockup from "../assets/Device.png";
+import resetMockup from "../assets/460x996bb.webp";
 
 export const PROFILE = {
   name: "Akshat Dwivedi",
@@ -110,18 +112,44 @@ export const PROJECTS = [
   },
   {
     title: "Noww Club",
-    tagline: "A private club for peak performers",
-    subtitle: "Membership & rituals platform",
+    tagline: "Daily rituals for intentional living",
+    subtitle: "Live on the App Store",
     year: "2025",
     url: "https://noww.club",
     domain: "noww.club",
     description:
-      "Personalised daily rituals and a curated member experience — built from brand to mobile app.",
-    technologies: ["React Native", "Next.js", "Product Design"],
-    type: "Web & App",
-    mockup: "browser",
-    accent: "#b45309",
-    links: [{ label: "Visit site", href: "https://noww.club", primary: true }],
+      "An invite-only club for peak performers — daily rituals, alignment check-ins, and guided reflections. Designed and built the iOS app and brand experience end to end.",
+    technologies: ["React Native", "Product Design", "UI/UX"],
+    type: "iOS App",
+    mockup: "device",
+    mockupImage: nowwMockup,
+    links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/in/app/noww-club/id6760992837",
+        primary: true,
+      },
+      { label: "Website", href: "https://noww.club" },
+    ],
+  },
+  {
+    title: "Reset",
+    tagline: "Get your life back in 60 days",
+    subtitle: "Live on the App Store",
+    year: "2025",
+    description:
+      "A habit and discipline app to break distractions, build routines, and track progress — screen time blockers, focus timers, and daily challenges. Contributed to product design and React Native development.",
+    technologies: ["React Native", "Product Design", "UI/UX"],
+    type: "iOS App",
+    mockup: "device",
+    mockupImage: resetMockup,
+    links: [
+      {
+        label: "App Store",
+        href: "https://apps.apple.com/in/app/reset-reset-your-life/id6755929687",
+        primary: true,
+      },
+    ],
   },
   {
     title: "Mystiqare",
